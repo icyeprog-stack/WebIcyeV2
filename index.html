@@ -263,7 +263,7 @@ Sleep is not a luxury—it’s a necessity. Getting a good night’s rest is an 
                                     <img src="https://placehold.co/40x40/C6F6D5/38A169?text=A" class="w-8 h-8 rounded-full" alt="Author Avatar">
                                     <p class="ml-2 text-sm text-gray-600">Amara Purshottam</p>
                                 </div>
-                                <a href="#" class="text-blue-600 text-sm font-semibold mt-2 inline-block" onclick="showMessageBox('Read more button clicked.')">Read more →</a>
+                                <a href="#" class="text-blue-600 text-sm font-semibold mt-2 inline-block" onclick="readPost(0)">Read more →</a>
                             </div>
                         </div>
 
@@ -282,7 +282,7 @@ Across cultures, change is slowly happening. More people are opening conversatio
                                     <img src="https://placehold.co/40x40/C6F6D5/38A169?text=B" class="w-8 h-8 rounded-full" alt="Author Avatar">
                                     <p class="ml-2 text-sm text-gray-600">Delara Clace</p>
                                 </div>
-                                <a href="#" class="text-blue-600 text-sm font-semibold mt-2 inline-block" onclick="showMessageBox('Read more button clicked.')">Read more →</a>
+                                <a href="#" class="text-blue-600 text-sm font-semibold mt-2 inline-block" onclick="readPost(1)">Read more →</a>
                             </div>
                         </div>
 
@@ -302,7 +302,7 @@ You don’t need to be an athlete to enjoy its benefits. Stretching, biking, yog
                                     <img src="https://placehold.co/40x40/C6F6D5/38A169?text=C" class="w-8 h-8 rounded-full" alt="Author Avatar">
                                     <p class="ml-2 text-sm text-gray-600">Mace Shardae</p>
                                 </div>
-                                <a href="#" class="text-blue-600 text-sm font-semibold mt-2 inline-block" onclick="showMessageBox('Read more button clicked.')">Read more →</a>
+                                <a href="#" class="text-blue-600 text-sm font-semibold mt-2 inline-block" onclick="readPost(2)">Read more →</a>
                             </div>
                         </div>
 
@@ -321,7 +321,7 @@ Many young people have found healing in pursuing their passions. Creativity buil
                                     <img src="https://placehold.co/40x40/C6F6D5/38A169?text=D" class="w-8 h-8 rounded-full" alt="Author Avatar">
                                     <p class="ml-2 text-sm text-gray-600">Roxanna Jarden</p>
                                 </div>
-                                <a href="#" class="text-blue-600 text-sm font-semibold mt-2 inline-block" onclick="showMessageBox('Read more button clicked.')">Read more →</a>
+                                <a href="#" class="text-blue-600 text-sm font-semibold mt-2 inline-block" onclick="readPost(3)">Read more →</a>
                             </div>
                         </div>
 
@@ -342,7 +342,7 @@ Your worth is not measured by likes or followers. You are more than the filters 
                                     <img src="https://placehold.co/40x40/C6F6D5/38A169?text=E" class="w-8 h-8 rounded-full" alt="Author Avatar">
                                     <p class="ml-2 text-sm text-gray-600">Prasanna Parikh</p>
                                 </div>
-                                <a href="#" class="text-blue-600 text-sm font-semibold mt-2 inline-block" onclick="showMessageBox('Read more button clicked.')">Read more →</a>
+                                <a href="#" class="text-blue-600 text-sm font-semibold mt-2 inline-block" onclick="readPost(4)">Read more →</a>
                             </div>
                         </div>
 
@@ -363,7 +363,7 @@ Remember: stress is temporary, but the skills you build to manage it will last a
                                     <img src="https://placehold.co/40x40/C6F6D5/38A169?text=E" class="w-8 h-8 rounded-full" alt="Author Avatar">
                                     <p class="ml-2 text-sm text-gray-600">Prasanna Parikh</p>
                                 </div>
-                                <a href="#" class="text-blue-600 text-sm font-semibold mt-2 inline-block" onclick="showMessageBox('Read more button clicked.')">Read more →</a>
+                                <a href="#" class="text-blue-600 text-sm font-semibold mt-2 inline-block" onclick="readPost(5)">Read more →</a>
                             </div>
                         </div>
                     </div>
@@ -371,6 +371,29 @@ Remember: stress is temporary, but the skills you build to manage it will last a
                 </div>
             </section>
         </div>
+        
+        <!-- Full Post Screen -->
+        <div id="full-post-screen" class="page-content hidden py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                <button onclick="showPage('blog-posts')" class="text-blue-600 hover:text-blue-800 transition duration-300 font-semibold mb-8 flex items-center">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                    Back to Posts
+                </button>
+                <div class="bg-white rounded-2xl shadow-lg p-8 md:p-12">
+                    <img id="post-image" src="" alt="Post Image" class="w-full h-auto rounded-xl mb-6 object-cover">
+                    <h1 id="post-title" class="text-3xl md:text-4xl font-bold text-gray-800 mb-4"></h1>
+                    <div class="flex items-center mb-6">
+                        <img id="author-image" src="" class="w-10 h-10 rounded-full" alt="Author Avatar">
+                        <div class="ml-4">
+                            <p id="author-name" class="text-md font-semibold text-gray-800"></p>
+                            <p class="text-sm text-gray-500">Author</p>
+                        </div>
+                    </div>
+                    <div id="post-content" class="prose max-w-none text-gray-700 leading-relaxed"></div>
+                </div>
+            </div>
+        </div>
+        
     </main>
 
     <!-- Footer -->
@@ -424,6 +447,51 @@ Remember: stress is temporary, but the skills you build to manage it will last a
     </footer>
 
     <script>
+        const blogPosts = [
+            {
+                title: "The Dangers of Sleep Deprivation in Students and Workers",
+                content: "Have you ever tried to get through a day on just a few hours of sleep? Your body feels heavy, your mind drifts away in class or at work, and even the simplest tasks seem like mountains to climb. That’s the reality of sleep deprivation, something students and workers often face in today’s fast-paced world. When sleep is cut short, the brain loses its ability to focus and retain information. Students may find it harder to study and remember lessons, while workers may struggle to perform tasks or make important decisions. Over time, constant lack of sleep weakens the immune system, increases the risk of anxiety and depression, and leads to chronic illnesses such as heart disease. Sleep is not a luxury—it’s a necessity. Getting a good night’s rest is an act of self-care that allows you to wake up with energy, clarity, and motivation. Remember: every hour of rest you give yourself is an investment in a healthier, brighter tomorrow.",
+                author: "Amara Purshottam",
+                image: "img/healthy-sleep-poses-composition-vector-1.png",
+                authorImage: "https://placehold.co/40x40/C6F6D5/38A169?text=A"
+            },
+            {
+                title: "The Pressure to Be “Strong” – Stigma Around Seeking Help in Different Cultures",
+                content: "In many communities, strength is often defined by silence. People are told to keep their struggles to themselves, to “toughen up,” or to hide their emotions. While resilience is valuable, this mindset has created a harmful stigma: the belief that seeking help is a sign of weakness. In reality, asking for help is one of the bravest things a person can do. Imagine someone carrying a heavy load alone—eventually, the weight becomes unbearable. But if they share the burden, they can walk farther and faster. Mental health works the same way. Across cultures, change is slowly happening. More people are opening conversations about therapy, counseling, and emotional well-being. By breaking the silence, we also break the chains of stigma. If you’re struggling, know this: strength is not about pretending everything is fine. Strength is about having the courage to say, “I need support.”",
+                author: "Delara Clace",
+                image: "img/woman-hugging-herself-free-vector-1.png",
+                authorImage: "https://placehold.co/40x40/C6F6D5/38A169?text=B"
+            },
+            {
+                title: "The Role of Physical Activity in Mental Wellness",
+                content: "Picture yourself jogging under the morning sun, or dancing to your favorite song, or playing a friendly game of basketball. Notice how your heart beats faster, your body feels lighter, and your mood begins to lift. That’s the magic of physical activity—it doesn’t just strengthen the body, it also heals the mind. Science shows that exercise releases endorphins, often called “happy hormones.” These natural chemicals reduce stress, ease anxiety, and improve focus. Even a 15-minute walk outside can make a difference in how we feel. For students buried in assignments or workers stressed by deadlines, physical activity can be the reset button they need. You don’t need to be an athlete to enjoy its benefits. Stretching, biking, yoga, or even gardening can help. What matters most is consistency. Every step you take is a step toward both physical and mental resilience. Move your body, and your mind will thank you.",
+                author: "Mace Shardae",
+                image: "img/yoga-class-vector-1.png",
+                authorImage: "https://placehold.co/40x40/C6F6D5/38A169?text=C"
+            },
+            {
+                title: "Music and Creative Hobbies as Tools for Emotional Healing",
+                content: "There’s something powerful about a song that speaks to your heart, a painting that reflects your feelings, or a journal entry that releases your thoughts. Creative hobbies like music, art, and writing allow us to express emotions that words alone cannot capture. When life feels overwhelming, creativity becomes a safe escape. Listening to music can calm racing thoughts. Playing an instrument can transform sadness into melody. Painting or doodling can turn bottled-up emotions into colors on a canvas. These creative outlets are not just hobbies—they’re lifelines. Many young people have found healing in pursuing their passions. Creativity builds resilience, improves focus, and provides comfort during hard times. It reminds us that even in the middle of chaos, beauty can be created. The next time you feel heavy, try picking up a pen, brush, or guitar. Your heart may find the peace it’s been looking for.",
+                author: "Roxanna Jarden",
+                image: "img/girl-listening-music-on-headphones-free-vector-1.png",
+                authorImage: "https://placehold.co/40x40/C6F6D5/38A169?text=D"
+            },
+            {
+                title: "Impact of Social Media on Self-Esteem and Anxiety",
+                content: "Social media has become part of our daily lives. With just one swipe, we can connect with friends, follow trends, or discover inspiring stories. But behind the bright screens and endless scrolling lies a double-edged sword. On one side, social media creates opportunities—it gives people a voice, spreads awareness about mental health, and connects communities. On the other side, it also fuels comparison. Seeing “picture-perfect” posts can make us feel like we’re not good enough, not successful enough, or not attractive enough. This cycle often leads to low self-esteem, anxiety, and even loneliness. But here’s the truth: social media is a highlight reel, not real life. Nobody posts every failure, tear, or sleepless night. To protect your mental health, practice mindful scrolling—limit screen time, unfollow accounts that make you feel insecure, and fill your feed with uplifting and educational content. Your worth is not measured by likes or followers. You are more than the filters and captions—your value is real, with or without a screen.",
+                author: "Prasanna Parikh",
+                image: "img/a-design-icon-of-global-chatting-vector-1.png",
+                authorImage: "https://placehold.co/40x40/C6F6D5/38A169?text=E"
+            },
+            {
+                title: "Common Stress Management Techniques Used by College Students",
+                content: "Stress is almost unavoidable in college life—there are exams, deadlines, group projects, and personal challenges. But what makes the difference is not the stress itself, but how we manage it. Many students turn to healthy coping strategies. Some organize their schedules and set small goals to prevent last-minute panic. Others practice mindfulness and breathing exercises to calm the mind before an exam. Journaling helps release bottled-up emotions, while regular breaks prevent burnout. Connecting with friends and family provides emotional support, reminding us we’re not alone. It’s also important to avoid unhealthy coping mechanisms like skipping meals, oversleeping, or overusing social media. Instead, finding balance between responsibilities and self-care is key. Remember: stress is temporary, but the skills you build to manage it will last a lifetime. Every challenge you overcome makes you stronger, wiser, and more prepared for the future.",
+                author: "Prasanna Parikh",
+                image: "img/stress-awareness-a-young-woman-struggles-with-stress-and-internal-fears-confused-thoughts-a-frustrated-woman-with-problems-mental-health-flat-modern-illustration-vector-1.png",
+                authorImage: "https://placehold.co/40x40/C6F6D5/38A169?text=E"
+            }
+        ];
+        
         // Function to show a specific page and hide others
         function showPage(pageId) {
             const pages = document.querySelectorAll('.page-content');
@@ -470,6 +538,19 @@ Remember: stress is temporary, but the skills you build to manage it will last a
             setTimeout(() => {
                 box.remove();
             }, 3000); // Remove after 3 seconds
+        }
+        
+        // Function to display the full blog post
+        function readPost(index) {
+            const post = blogPosts[index];
+            if (post) {
+                document.getElementById('post-title').innerText = post.title;
+                document.getElementById('post-content').innerText = post.content;
+                document.getElementById('author-name').innerText = post.author;
+                document.getElementById('post-image').src = post.image;
+                document.getElementById('author-image').src = post.authorImage;
+                showPage('full-post-screen');
+            }
         }
     </script>
 </body>
