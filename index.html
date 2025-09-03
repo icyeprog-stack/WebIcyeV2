@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mind Matters</title>
+    <!-- Use Tailwind CSS for modern styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8FBFE;
+            color: #1A202C;
+        }
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-image: linear-gradient(90deg, #5A67D8, #805AD5);
+        }
+        .bg-gradient {
+            background-image: linear-gradient(90deg, #5A67D8, #805AD5);
+        }
+        .line-clamp-4 {
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- Header & Navigation -->
+    <header class="sticky top-0 z-50 py-4 bg-white/80 backdrop-blur-sm shadow-sm">
+        <nav class="container mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <img src="img/mindmatters-logo.svg" alt="" srcset="">
+                <span class="text-xl font-bold text-gray-800">Mind Matters</span>
+            </div>
+            <div class="hidden md:flex items-center space-x-6">
+                <!-- Corrected 'home' to 'home-page' -->
+                <a href="#" onclick="showPage('home-page')" class="text-gray-600 hover:text-gray-900 transition duration-300 font-medium">Home</a>
+                <a href="#posts" onclick="showPage('blog-posts')" class="text-gray-600 hover:text-gray-900 transition duration-300 font-medium">Posts</a>
+                <a href="#about" onclick="showPage('about-us')" class="text-gray-600 hover:text-gray-900 transition duration-300 font-medium">About Us</a>
+                <a href="#pricing" class="text-gray-600 hover:text-gray-900 transition duration-300 font-medium">Pricing</a>
+            </div>
+            <div class="hidden md:flex items-center space-x-4">
+                <button class="bg-gray-200 text-blue-600 font-semibold py-2 px-6 rounded-full transition duration-300 hover:bg-gray-300" onclick="showMessageBox('Login functionality not implemented.')">
+                    Login
+                </button>
+                <button class="bg-blue-600 text-white font-semibold py-2 px-6 rounded-full transition duration-300 hover:bg-blue-700" onclick="showMessageBox('Try Mind Matters free button clicked.')">
+                    Try Mind Matters free
+                </button>
+            </div>
+            <button class="md:hidden text-gray-800 focus:outline-none" onclick="toggleMenu()">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg py-4">
+            <!-- Corrected 'home' to 'home-page' -->
+            <a href="#" onclick="showPage('home-page')" class="block px-6 py-2 text-gray-600 hover:bg-gray-100 transition duration-300">Home</a>
+            <a href="#posts" onclick="showPage('blog-posts')" class="block px-6 py-2 text-gray-600 hover:bg-gray-100 transition duration-300">Posts</a>
+            <a href="#about" onclick="showPage('about-us')" class="block px-6 py-2 text-gray-600 hover:bg-gray-100 transition duration-300">About Us</a>
+            <a href="#pricing" class="block px-6 py-2 text-gray-600 hover:bg-gray-100 transition duration-300">Pricing</a>
+            <div class="px-6 mt-4 space-y-2">
+                <button class="w-full bg-gray-200 text-blue-600 font-semibold py-2 rounded-full transition duration-300 hover:bg-gray-300" onclick="showMessageBox('Login functionality not implemented.')">
+                    Login
+                </button>
+                <button class="w-full bg-blue-600 text-white font-semibold py-2 rounded-full transition duration-300 hover:bg-blue-700" onclick="showMessageBox('Try Mind Matters free button clicked.')">
+                    Try Mind Matters free
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- Home Page Content -->
+        <div id="home-page" class="page-content">
+            <!-- Hero Section -->
+            <section class="py-24 md:py-32">
+                <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div class="text-left">
+                        <h1 class="text-4xl md:text-5xl font-extrabold text-gray-800 leading-tight mb-4">
+                            Mind Matters
+                        </h1>
+                        <p class="text-lg text-gray-500 mb-8 max-w-lg">
+                            Because caring for your mind is just as important as caring for your body.
+                        </p>
+                        <button class="bg-blue-600 text-white font-semibold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:scale-105 inline-block" onclick="showMessageBox('Try Mind Matters free button clicked.')">
+                            Try Mind Matters free
+                        </button>
+                    </div>
+                    <div class="flex justify-center md:justify-end">
+                        <img src="img/psychotherapy.png" alt="Mind Matters Illustration" class="rounded-xl shadow-lg w-full max-w-md">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Welcome Section -->
+            <section class="py-20 bg-gray-50">
+                <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div class="flex justify-center md:justify-start order-2 md:order-1">
+                        <img src="img/your-mental-health-wealth.png" alt="Welcome Illustration" class="rounded-xl shadow-lg w-full max-w-md">
+                    </div>
+                    <div class="text-left order-1 md:order-2">
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                            Welcome to Mind Matters!
+                        </h2>
+                        <p class="text-gray-500 mb-6">
+                            This blog is dedicated to exploring the many aspects of mental health and well-being, especially for students and young adults. Here, we talk about real-life struggles—like stress, sleep, social media pressures, and stigma—and share insights on how to overcome them.
+                        </p>
+                        <p class="text-gray-500 mb-8">
+                            Our goal is simple: to raise awareness, encourage open conversations, and break the barriers that prevent people from seeking help. Together, let’s build a healthier, more supportive community where every mind truly matters.                        </p>
+                        <button class="bg-blue-600 text-white font-semibold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:scale-105" onclick="showPage('blog-posts')">
+                            Explore our post
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stay Updated Section -->
+            <section class="py-20">
+                <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div class="text-left">
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                            Stay Updated with Mind Matters
+                        </h2>
+                        <p class="text-gray-500 mb-8">
+                            Subscribe to our newsletter to receive the latest articles, tips, and resources on mental health and well-being.
+                        </p>
+                        <button class="bg-blue-600 text-white font-semibold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:scale-105" onclick="showMessageBox('Subscribe button clicked.')">
+                            Subscribe
+                        </button>
+                    </div>
+                    <div class="flex justify-center md:justify-end">
+                        <img src="img/work-together-image.png" alt="Stay Updated Illustration" class=" w-full max-w-md">
+                    </div>
+                    
+                </div>
+            </section>
+        </div>
+
+        <!-- About Us Page Content -->
+        <div id="about-us" class="page-content hidden">
+            <!-- About Us Hero Section -->
+            <section class="py-24 md:py-32">
+                <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div class="text-left">
+                        <h1 class="text-4xl md:text-5xl font-extrabold text-gray-800 leading-tight mb-4">
+                            About Us
+                        </h1>
+                        <p class="text-lg text-gray-500 mb-8 max-w-lg">
+                            We are Group 4, a team of students passionate about raising awareness on mental health and well-being. We believe that caring for the mind is essential, especially in today’s fast-paced and stressful world.
+                        </p>
+                    </div>
+                    <div class="flex justify-center md:justify-end">
+                        <img src="img/people-concept-illustration-of-our-team-management-about-us-for-graphic-and-web-design-business-presentation-and-marketing-material-vector-1.png" alt="Team Illustration" class="rounded-xl shadow-lg w-full max-w-md">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Team Section -->
+            <section class="py-20 bg-gray-50">
+                <div class="container mx-auto px-6 text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-2">Team</h2>
+                    <h3 class="text-2xl text-gray-600 mb-12">Group 4</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
+                        <!-- Team Member Card 1 -->
+                        <div class="bg-white p-6 rounded-2xl shadow-md transform transition duration-300 hover:scale-105 hover:shadow-lg">
+                            <img src="https://placehold.co/120x120/FFD1DC/E53E3E?text=C" class="w-24 h-24 rounded-full mx-auto mb-4" alt="Cassandra Nicole R. Pangan">
+                            <h4 class="text-lg font-semibold text-gray-800">Casandra Nicole R. Balatbat</h4>
+                            <p class="text-sm text-gray-500">Writer</p>
+                        </div>
+                        <!-- Team Member Card 2 -->
+                        <div class="bg-white p-6 rounded-2xl shadow-md transform transition duration-300 hover:scale-105 hover:shadow-lg">
+                            <img src="https://placehold.co/120x120/C6F6D5/38A169?text=A" class="w-24 h-24 rounded-full mx-auto mb-4" alt="Andrea G. Puno">
+                            <h4 class="text-lg font-semibold text-gray-800">Andrea O. Dayrit</h4>
+                            <p class="text-sm text-gray-500">Designer</p>
+                        </div>
+                        <!-- Team Member Card 3 -->
+                        <div class="bg-white p-6 rounded-2xl shadow-md transform transition duration-300 hover:scale-105 hover:shadow-lg">
+                            <img src="https://placehold.co/120x120/BEE3F8/3182CE?text=R" class="w-24 h-24 rounded-full mx-auto mb-4" alt="Ron Tye A. Estrellada">
+                            <h4 class="text-lg font-semibold text-gray-800">Ron Tyler B. Mendiola</h4>
+                            <p class="text-sm text-gray-500">Editor</p>
+                        </div>
+                        <!-- Team Member Card 4 -->
+                        <div class="bg-white p-6 rounded-2xl shadow-md transform transition duration-300 hover:scale-105 hover:shadow-lg">
+                            <img src="https://placehold.co/120x120/FEEBC6/DD6B20?text=R" class="w-24 h-24 rounded-full mx-auto mb-4" alt="Richemond E. Ruzgal">
+                            <h4 class="text-lg font-semibold text-gray-800">Richmond E. Cuyugan</h4>
+                            <p class="text-sm text-gray-500">Researcher</p>
+                        </div>
+                        <!-- Team Member Card 5 -->
+                        <div class="bg-white p-6 rounded-2xl shadow-md transform transition duration-300 hover:scale-105 hover:shadow-lg">
+                            <img src="https://placehold.co/120x120/E9D8FD/805AD5?text=F" class="w-24 h-24 rounded-full mx-auto mb-4" alt="Karl Vincent C. Delos Santos">
+                            <h4 class="text-lg font-semibold text-gray-800">Fercyval A. Simbulan</h4>
+                            <p class="text-sm text-gray-500">Material Handler</p>
+                        </div>
+                        <!-- Team Member Card 6 -->
+                        <div class="bg-white p-6 rounded-2xl shadow-md transform transition duration-300 hover:scale-105 hover:shadow-lg">
+                            <img src="https://placehold.co/120x120/E9D8FD/805AD5?text=K" class="w-24 h-24 rounded-full mx-auto mb-4" alt="Karl Vincent C. Delos Santos">
+                            <h4 class="text-lg font-semibold text-gray-800">Karl Vincent C. Bondoc</h4>
+                            <p class="text-sm text-gray-500">Coordinator</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- References Section -->
+            <section class="py-20">
+                <div class="container mx-auto px-6">
+                    <h2 class="text-2xl font-bold mb-4">References</h2>
+                    <ul class="list-disc list-inside space-y-2 text-gray-600">
+                        <li>World Health Organization. (2023). Mental health: Strengthening our response. https://who.int</li>
+                        <li>Mayo Clinic Staff. (2022). Stress management: Know your triggers. Mayo Clinic.</li>
+                        <li>Harvard Health Publishing. (2021). The importance of sleep for mental health.</li>
+                        <li>Pew Research Center. (2023). Social media and teen mental health.</li>
+                        <li>National Institute of Mental Health. (2021). Coping with stress.</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+
+        <!-- Blog Posts Page Content -->
+        <div id="blog-posts" class="page-content hidden">
+            <!-- Blog Hero Section -->
+            <section class="py-24 md:py-32">
+                <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div class="text-left">
+                        <h1 class="text-4xl md:text-5xl font-extrabold text-gray-800 leading-tight mb-4">
+                            Community Matters
+                        </h1>
+                        <p class="text-lg text-gray-500 mb-8 max-w-lg">
+                            Exploring mental wellness, one topic at a time.
+                        </p>
+                    </div>
+                    <div class="flex justify-center md:justify-end">
+                        <img src="img/community-logo-design-free-vector-1.png" alt="Community Illustration" class=" w-full max-w-md">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Blog Posts Grid -->
+            <section class="py-20 bg-gray-50">
+                <div class="container mx-auto px-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- Blog Card 1 -->
+                        <div class="bg-white rounded-2xl shadow-md overflow-hidden flex flex-col md:flex-row transform transition duration-300 hover:scale-[1.01] hover:shadow-lg">
+                            <img src="img/healthy-sleep-poses-composition-vector-1.png" alt="The Dangers of Sleep Deprivation" class="w-full md:w-1/2 h-48 md:h-auto object-cover">
+                            <div class="p-6 md:w-1/2">
+                                <span class="text-xs font-semibold text-gray-500 uppercase">Post</span>
+                                <h3 class="text-xl font-bold text-gray-800 mt-2 mb-2">The Dangers of Sleep Deprivation in Students and Workers</h3>
+                                <p class="text-sm text-gray-600 line-clamp-4">Have you ever tried to get through a day on just a few hours of sleep? Your body feels heavy, your mind drifts away in class or at work, and even the simplest tasks seem like mountains to climb. That’s the reality of sleep deprivation, something students and workers often face in today’s fast-paced world.
+
+When sleep is cut short, the brain loses its ability to focus and retain information. Students may find it harder to study and remember lessons, while workers may struggle to perform tasks or make important decisions. Over time, constant lack of sleep weakens the immune system, increases the risk of anxiety and depression, and leads to chronic illnesses such as heart disease.
+
+Sleep is not a luxury—it’s a necessity. Getting a good night’s rest is an act of self-care that allows you to wake up with energy, clarity, and motivation. Remember: every hour of rest you give yourself is an investment in a healthier, brighter tomorrow.</p>
+                                <div class="flex items-center mt-4">
+                                    <img src="https://placehold.co/40x40/C6F6D5/38A169?text=A" class="w-8 h-8 rounded-full" alt="Author Avatar">
+                                    <p class="ml-2 text-sm text-gray-600">Amara Purshottam</p>
+                                </div>
+                                <a href="#" class="text-blue-600 text-sm font-semibold mt-2 inline-block" onclick="showMessageBox('Read more button clicked.')">Read more →</a>
+                            </div>
+                        </div>
+
+                        <!-- Blog Card 2 -->
+                        <div class="bg-white rounded-2xl shadow-md overflow-hidden flex flex-col md:flex-row transform transition duration-300 hover:scale-[1.01] hover:shadow-lg">
+                            <img src="img/woman-hugging-herself-free-vector-1.png" alt="It's Okay to Be 'Strong'" class="w-full md:w-1/2 h-48 md:h-auto object-cover">
+                            <div class="p-6 md:w-1/2">
+                                <span class="text-xs font-semibold text-gray-500 uppercase">Post</span>
+                                <h3 class="text-xl font-bold text-gray-800 mt-2 mb-2">The Pressure to Be “Strong” – Stigma Around Seeking Help in Different Cultures</h3>
+                                <p class="text-sm text-gray-600 line-clamp-4">In many communities, strength is often defined by silence. People are told to keep their struggles to themselves, to “toughen up,” or to hide their emotions. While resilience is valuable, this mindset has created a harmful stigma: the belief that seeking help is a sign of weakness.
+
+In reality, asking for help is one of the bravest things a person can do. Imagine someone carrying a heavy load alone—eventually, the weight becomes unbearable. But if they share the burden, they can walk farther and faster. Mental health works the same way.
+
+Across cultures, change is slowly happening. More people are opening conversations about therapy, counseling, and emotional well-being. By breaking the silence, we also break the chains of stigma. If you’re struggling, know this: strength is not about pretending everything is fine. Strength is about having the courage to say, “I need support.”</p>
+                                <div class="flex items-center mt-4">
+                                    <img src="https://placehold.co/40x40/C6F6D5/38A169?text=B" class="w-8 h-8 rounded-full" alt="Author Avatar">
+                                    <p class="ml-2 text-sm text-gray-600">Delara Clace</p>
+                                </div>
+                                <a href="#" class="text-blue-600 text-sm font-semibold mt-2 inline-block" onclick="showMessageBox('Read more button clicked.')">Read more →</a>
+                            </div>
+                        </div>
+
+                        <!-- Blog Card 3 -->
+                        <div class="bg-white rounded-2xl shadow-md overflow-hidden flex flex-col md:flex-row transform transition duration-300 hover:scale-[1.01] hover:shadow-lg">
+                            <img src="img/yoga-class-vector-1.png" alt="Physical Activity" class="w-full md:w-1/2 h-48 md:h-auto object-cover">
+                            <div class="p-6 md:w-1/2">
+                                <span class="text-xs font-semibold text-gray-500 uppercase">Post</span>
+                                <h3 class="text-xl font-bold text-gray-800 mt-2 mb-2">The Role of Physical Activity in Mental Wellness</h3>
+                                <p class="text-sm text-gray-600 line-clamp-4">Picture yourself jogging under the morning sun, or dancing to your favorite song, or playing a friendly game of basketball. Notice how your heart beats faster, your body feels lighter, and your mood begins to lift. That’s the magic of physical activity—it doesn’t just strengthen the body, it also heals the mind.
+
+Science shows that exercise releases endorphins, often called “happy hormones.” These natural chemicals reduce stress, ease anxiety, and improve focus. Even a 15-minute walk outside can make a difference in how we feel. For students buried in assignments or workers stressed by deadlines, physical activity can be the reset button they need.
+
+You don’t need to be an athlete to enjoy its benefits. Stretching, biking, yoga, or even gardening can help. What matters most is consistency. Every step you take is a step toward both physical and mental resilience. Move your body, and your mind will thank you.
+</p>
+                                <div class="flex items-center mt-4">
+                                    <img src="https://placehold.co/40x40/C6F6D5/38A169?text=C" class="w-8 h-8 rounded-full" alt="Author Avatar">
+                                    <p class="ml-2 text-sm text-gray-600">Mace Shardae</p>
+                                </div>
+                                <a href="#" class="text-blue-600 text-sm font-semibold mt-2 inline-block" onclick="showMessageBox('Read more button clicked.')">Read more →</a>
+                            </div>
+                        </div>
+
+                        <!-- Blog Card 4 -->
+                        <div class="bg-white rounded-2xl shadow-md overflow-hidden flex flex-col md:flex-row transform transition duration-300 hover:scale-[1.01] hover:shadow-lg">
+                            <img src="img/girl-listening-music-on-headphones-free-vector-1.png" alt="Music and Creative Hobbies" class="w-full md:w-1/2 h-48 md:h-auto object-cover">
+                            <div class="p-6 md:w-1/2">
+                                <span class="text-xs font-semibold text-gray-500 uppercase">Post</span>
+                                <h3 class="text-xl font-bold text-gray-800 mt-2 mb-2">Music and Creative Hobbies as Tools for Emotional Healing</h3>
+                                <p class="text-sm text-gray-600 line-clamp-4">There’s something powerful about a song that speaks to your heart, a painting that reflects your feelings, or a journal entry that releases your thoughts. Creative hobbies like music, art, and writing allow us to express emotions that words alone cannot capture.
+
+When life feels overwhelming, creativity becomes a safe escape. Listening to music can calm racing thoughts. Playing an instrument can transform sadness into melody. Painting or doodling can turn bottled-up emotions into colors on a canvas. These creative outlets are not just hobbies—they’re lifelines.
+
+Many young people have found healing in pursuing their passions. Creativity builds resilience, improves focus, and provides comfort during hard times. It reminds us that even in the middle of chaos, beauty can be created. The next time you feel heavy, try picking up a pen, brush, or guitar. Your heart may find the peace it’s been looking for.</p>
+                                <div class="flex items-center mt-4">
+                                    <img src="https://placehold.co/40x40/C6F6D5/38A169?text=D" class="w-8 h-8 rounded-full" alt="Author Avatar">
+                                    <p class="ml-2 text-sm text-gray-600">Roxanna Jarden</p>
+                                </div>
+                                <a href="#" class="text-blue-600 text-sm font-semibold mt-2 inline-block" onclick="showMessageBox('Read more button clicked.')">Read more →</a>
+                            </div>
+                        </div>
+
+                        <!-- Blog Card 5 -->
+                        <div class="bg-white rounded-2xl shadow-md overflow-hidden flex flex-col md:flex-row transform transition duration-300 hover:scale-[1.01] hover:shadow-lg">
+                            <img src="img/a-design-icon-of-global-chatting-vector-1.png" alt="Social Media" class="w-full md:w-1/2 h-48 md:h-auto object-cover">
+                            <div class="p-6 md:w-1/2">
+                                <span class="text-xs font-semibold text-gray-500 uppercase">Post</span>
+                                <h3 class="text-xl font-bold text-gray-800 mt-2 mb-2">Impact of Social Media on Self-Esteem and Anxiety</h3>
+                                <p class="text-sm text-gray-600 line-clamp-4">Social media has become part of our daily lives. With just one swipe, we can connect with friends, follow trends, or discover inspiring stories. But behind the bright screens and endless scrolling lies a double-edged sword.
+
+On one side, social media creates opportunities—it gives people a voice, spreads awareness about mental health, and connects communities. On the other side, it also fuels comparison. Seeing “picture-perfect” posts can make us feel like we’re not good enough, not successful enough, or not attractive enough. This cycle often leads to low self-esteem, anxiety, and even loneliness.
+
+But here’s the truth: social media is a highlight reel, not real life. Nobody posts every failure, tear, or sleepless night. To protect your mental health, practice mindful scrolling—limit screen time, unfollow accounts that make you feel insecure, and fill your feed with uplifting and educational content.
+
+Your worth is not measured by likes or followers. You are more than the filters and captions—your value is real, with or without a screen.</p>
+                                <div class="flex items-center mt-4">
+                                    <img src="https://placehold.co/40x40/C6F6D5/38A169?text=E" class="w-8 h-8 rounded-full" alt="Author Avatar">
+                                    <p class="ml-2 text-sm text-gray-600">Prasanna Parikh</p>
+                                </div>
+                                <a href="#" class="text-blue-600 text-sm font-semibold mt-2 inline-block" onclick="showMessageBox('Read more button clicked.')">Read more →</a>
+                            </div>
+                        </div>
+
+
+                        <div class="bg-white rounded-2xl shadow-md overflow-hidden flex flex-col md:flex-row transform transition duration-300 hover:scale-[1.01] hover:shadow-lg">
+                            <img src="img/stress-awareness-a-young-woman-struggles-with-stress-and-internal-fears-confused-thoughts-a-frustrated-woman-with-problems-mental-health-flat-modern-illustration-vector-1.png" alt="Social Media" class="w-full md:w-1/2 h-48 md:h-auto object-cover">
+                            <div class="p-6 md:w-1/2">
+                                <span class="text-xs font-semibold text-gray-500 uppercase">Post</span>
+                                <h3 class="text-xl font-bold text-gray-800 mt-2 mb-2">Common Stress Management Techniques Used by College Students</h3>
+                                <p class="text-sm text-gray-600 line-clamp-4">Stress is almost unavoidable in college life—there are exams, deadlines, group projects, and personal challenges. But what makes the difference is not the stress itself, but how we manage it.
+
+Many students turn to healthy coping strategies. Some organize their schedules and set small goals to prevent last-minute panic. Others practice mindfulness and breathing exercises to calm the mind before an exam. Journaling helps release bottled-up emotions, while regular breaks prevent burnout. Connecting with friends and family provides emotional support, reminding us we’re not alone.
+
+It’s also important to avoid unhealthy coping mechanisms like skipping meals, oversleeping, or overusing social media. Instead, finding balance between responsibilities and self-care is key.
+
+Remember: stress is temporary, but the skills you build to manage it will last a lifetime. Every challenge you overcome makes you stronger, wiser, and more prepared for the future.</p>
+                                <div class="flex items-center mt-4">
+                                    <img src="https://placehold.co/40x40/C6F6D5/38A169?text=E" class="w-8 h-8 rounded-full" alt="Author Avatar">
+                                    <p class="ml-2 text-sm text-gray-600">Prasanna Parikh</p>
+                                </div>
+                                <a href="#" class="text-blue-600 text-sm font-semibold mt-2 inline-block" onclick="showMessageBox('Read more button clicked.')">Read more →</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-400 py-12">
+        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+                <div class="flex items-center space-x-2 mb-4">
+                    <img src="img/mindmatters-logo.svg" alt="" srcset="">
+                    <span class="text-xl font-bold text-white">Mind Matters</span>
+                </div>
+                <p class="text-sm">
+                    A dedicated platform for mental health awareness and self-care.
+                </p>
+            </div>
+            <div>
+                <h3 class="font-semibold text-white mb-4">Product</h3>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-white transition duration-300">Overview</a></li>
+                    <li><a href="#" class="hover:text-white transition duration-300">Features</a></li>
+                    <li><a href="#" class="hover:text-white transition duration-300">Pricing</a></li>
+                    <li><a href="#" class="hover:text-white transition duration-300">Customer stories</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-semibold text-white mb-4">Resources</h3>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-white transition duration-300">Blog</a></li>
+                    <li><a href="#" class="hover:text-white transition duration-300">Guides & Ebooks</a></li>
+                    <li><a href="#" class="hover:text-white transition duration-300">Help Center</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-semibold text-white mb-4">Company</h3>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-white transition duration-300">About Us</a></li>
+                    <li><a href="#" class="hover:text-white transition duration-300">Careers</a></li>
+                    <li><a href="#" class="hover:text-white transition duration-300">Media Kit</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container mx-auto px-6 mt-8 border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center text-sm">
+            <div class="text-center md:text-left mb-4 md:mb-0">
+                &copy; 2024 Mind Matters. All rights reserved.
+            </div>
+            <div class="flex space-x-4">
+                <a href="#" class="hover:text-white transition duration-300">Privacy Policy</a>
+                <a href="#" class="hover:text-white transition duration-300">Terms of Service</a>
+                <a href="#" class="hover:text-white transition duration-300">Security</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Function to show a specific page and hide others
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page-content');
+            pages.forEach(page => {
+                if (page.id === pageId) {
+                    page.classList.remove('hidden');
+                } else {
+                    page.classList.add('hidden');
+                }
+            });
+        }
+
+        // Set the initial page to show
+        document.addEventListener('DOMContentLoaded', () => {
+            showPage('home-page');
+        });
+
+        // Function to toggle the mobile menu
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Custom message box function instead of alert()
+        function showMessageBox(message) {
+            const box = document.createElement('div');
+            box.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                padding: 2rem;
+                background-color: #1A202C;
+                color: #F8FBFE;
+                border: 2px solid #5A67D8;
+                border-radius: 1rem;
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+                text-align: center;
+                z-index: 1000;
+                max-width: 90vw;
+            `;
+            box.innerHTML = `<p>${message}</p>`;
+            document.body.appendChild(box);
+            setTimeout(() => {
+                box.remove();
+            }, 3000); // Remove after 3 seconds
+        }
+    </script>
+</body>
+</html>
